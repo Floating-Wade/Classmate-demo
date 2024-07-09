@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>上杭四中（9）班回忆录-登录</title>
+		<link type="image/x-icon" rel="shortcut icon" href="phone/picture/title-picture.png">
+		<style>
+			input[type="checkbox"] {
+				width: 20px;
+				height: 20px;
+				padding-left: 60px;
+				margin-left: auto;
+				margin-bottom: 170px;
+				margin-top: 40px;
+			}
+
+			input[type="checkbox"]:checked {
+				background-color: green;
+			}
+		</style>
+	</head>
+	<body style="background-color:ghostwhite">
+		<button id="rule"
+			style="box-shadow:8px 8px 8px gray;border-radius: 80px;margin-top:5%;margin-left:5%;font-size:50px;border:4px 4px 4px deepskyblue;background-color:white;"
+			type="button">规则声明</button>
+		<button id="thanks"
+			style="box-shadow:8px 8px 8px gray;border-radius: 80px;margin-top:5%;margin-left:2%;font-size:50px;border:4px 4px 4px deepskyblue;background-color:white;"
+			type="button">致谢表</button>
+
+		<p style="margin-top:15%;font-size:100px;font-style:oblique;font-weight:bold;text-align:center;">登录</p>
+		<div
+			style="box-shadow:8px 8px 8px gray;border-radius: 80px;text-align:center;width:500px;padding-right:300px;margin-top:10%;margin-bottom:50%;background-color:white;margin-left:auto;margin-right:auto">
+			<h1 style="font-size:50px;padding-top:100px;text-align:left;margin-left:100px">姓名</h1>
+			<input id="text_input" type="text"
+				style="border-radius: 20px;font-size:50px;margin-left:90px;margin-right:90px">
+			<h1 style="font-size:50px;margin-top:30px;text-align:left;margin-left:100px">密码</h1>
+			<input id="password_input" type="password"
+				style="border-radius: 20px;font-size:50px;margin-left:90px;margin-right:90px">
+			<input id="password_input_button" type="button"
+				style="box-shadow:6px 6px 6px gray;padding-left:60px;padding-right:60px;margin-left:auto;margin-right:90px;margin-top:30px;background-color:white;border: 5px solid gray;border-radius: 80px;font-size:50px;"
+				value="登录">
+			<br />
+			<input id="checkbox" type="checkbox"><span style="font-size:25px;">勾选即表示已认真阅读并同意<a
+					href="rule.html">协议</a>！</span>
+		</div>
+	</body>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+	<script>
+		window.onload = function() {
+			function xuehuanow() //白色雪花
+			{
+				//aiiiiiiiii
+				var xuehuaya = document.createElement("canvas");
+				xuehuaya.setAttribute("id", "snowflake-canvas");
+				xuehuaya.setAttribute("class", "over");
+				xuehuaya.setAttribute("style", "position: absolute;width: 100%;height: 100%;top: 0;left: 0;z-index:-1;");
+				// 获取body的引用
+				var body = document.body;
+				// 获取body的第一个子元素
+				var firstChild = body.firstChild;
+				// 如果body有子元素，则将新元素插入到第一个子元素之前
+				if (firstChild) {
+					body.insertBefore(xuehuaya, firstChild);
+				} else {
+					// 如果body没有子元素，则直接将新元素添加到body中
+					body.appendChild(xuehuaya);
+				}
+
+				const canvas = document.getElementById('snowflake-canvas');
+				const ctx = canvas.getContext('2d');
+				const snowflakes = [];
+				const flakeCount = 40;
+				const snowflakeRange = 40;
+				const snowflakeSpeed = 1;
+				const snowflakeOpacity = 4;
+
+				function init() {
+					canvas.width = window.innerWidth;
+					canvas.height = window.innerHeight;
+					for (let i = 0; i < flakeCount; i++) {
+						snowflakes.push({
+							x: Math.random() * canvas.width,
+							y: Math.random() * canvas.height,
+							size: Math.random() * snowflakeRange,
+							speed: Math.random() * snowflakeSpeed,
+							opacity: snowflakeOpacity
+						});
+					}
+					animateSnow();
+				}
+
+				function animateSnow() {
+					ctx.clearRect(0, 0, canvas.width, canvas.height);
+					snowflakes.forEach((flake) => {
+						flake.y += flake.speed;
+						flake.x += Math.cos(flake.y * 0.1) * 0.5;
+						if (flake.y > canvas.height) {
+							flake.y = 0;
+						}
+						ctx.beginPath();
+						ctx.fillStyle = 'white';
+						ctx.globalAlpha = flake.opacity;
+						ctx.arc(flake.x, flake.y, flake.size, 0, Math.PI * 2);
+						ctx.fill();
+					});
+					var fuck = requestAnimationFrame(animateSnow);
+
+					function stopSnow() {
+						cancelAnimationFrame(fuck);
+					}
+					window.stopSnow = stopSnow;
+				}
+
+				window.addEventListener('resize', () => {
+					canvas.width = window.innerWidth;
+					canvas.height = window.innerHeight;
+				});
+				init();
+				var timeoutover = setTimeout(() => {
+					ctx.clearRect(0, 0, canvas.width, canvas.height);
+				}, 10000); // 持续时间2秒
+				//aiiiiiiiii
+			}
+			xuehuanow(); //白色雪花
+			function xuehuanow2() //红色雪花
+			{
+				//aiiiiiiiii
+				var xuehuaya = document.createElement("canvas");
+				xuehuaya.setAttribute("id", "snowflake-canvas");
+				xuehuaya.setAttribute("class", "over");
+				xuehuaya.setAttribute("style", "position: absolute;width: 100%;height: 100%;top: 0;left: 0;z-index:-2;");
+				// 获取body的引用
+				var body = document.body;
+				// 获取body的第一个子元素
+				var firstChild = body.firstChild;
+				// 如果body有子元素，则将新元素插入到第一个子元素之前
+				if (firstChild) {
+					body.insertBefore(xuehuaya, firstChild);
+				} else {
+					// 如果body没有子元素，则直接将新元素添加到body中
+					body.appendChild(xuehuaya);
+				}
+
+				const canvas = document.getElementById('snowflake-canvas');
+				const ctx = canvas.getContext('2d');
+				const snowflakes = [];
+				const flakeCount = 40;
+				const snowflakeRange = 40;
+				const snowflakeSpeed = 1;
+				const snowflakeOpacity = 4;
+
+				function init() {
+					canvas.width = window.innerWidth;
+					canvas.height = window.innerHeight;
+					for (let i = 0; i < flakeCount; i++) {
+						snowflakes.push({
+							x: Math.random() * canvas.width,
+							y: Math.random() * canvas.height,
+							size: Math.random() * snowflakeRange,
+							speed: Math.random() * snowflakeSpeed,
+							opacity: snowflakeOpacity
+						});
+					}
+					animateSnow();
+				}
+
+				function animateSnow() {
+					ctx.clearRect(0, 0, canvas.width, canvas.height);
+					snowflakes.forEach((flake) => {
+						flake.y += flake.speed;
+						flake.x += Math.cos(flake.y * 0.1) * 0.5;
+						if (flake.y > canvas.height) {
+							flake.y = 0;
+						}
+						ctx.beginPath();
+						ctx.fillStyle = 'pink';
+						ctx.globalAlpha = flake.opacity;
+						ctx.arc(flake.x, flake.y, flake.size, 0, Math.PI * 2);
+						ctx.fill();
+					});
+					var fuck = requestAnimationFrame(animateSnow);
+
+					function stopSnow2() {
+						cancelAnimationFrame(fuck);
+					}
+					window.stopSnow2 = stopSnow2;
+				}
+
+				window.addEventListener('resize', () => {
+					canvas.width = window.innerWidth;
+					canvas.height = window.innerHeight;
+				});
+				init();
+				var timeoutover = setTimeout(() => {
+					ctx.clearRect(0, 0, canvas.width, canvas.height);
+				}, 10000); // 持续时间2秒
+				//aiiiiiiiii
+			}
+			xuehuanow2(); //红色雪花
+
+			var buttonA = document.getElementById("rule");
+			buttonA.onclick = function() {
+				// 打开一个新窗口，并设置一些特性
+				var newWindow = window.open('', '',
+					'width=400,height=200,toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=1,resizable=1'
+				);
+
+				// 然后你可以给新窗口设置一个URL
+				if (newWindow) {
+					newWindow.location.href = 'rule.html';
+				}
+			}
+
+			var buttonB = document.getElementById("thanks");
+			buttonB.onclick = function() {
+				// 打开一个新窗口，并设置一些特性
+				var newWindow = window.open('', '',
+					'width=400,height=200,toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=1,resizable=1'
+				);
+
+				// 然后你可以给新窗口设置一个URL
+				if (newWindow) {
+					newWindow.location.href = 'thanks.html';
+				}
+			}
+
+
+
+
+			var text_input = document.getElementById("text_input");
+			var password_input = document.getElementById("password_input");
+			var password_input_button = document.getElementById("password_input_button");
+			var a = false; // 假设这是你要修改的变量，初始值为false
+			
+			var aname;
+			var akey;
+			
+			
+			function convertToHash() {
+				let valueT = text_input.value;
+				let valueP = password_input.value;
+
+				let hashT = CryptoJS.SHA256(valueT).toString(CryptoJS.enc.Hex);
+				let hashP = CryptoJS.SHA256(valueP).toString(CryptoJS.enc.Hex);
+				
+				aname=hashT;
+				akey=hashP;
+				
+			}
+			
+			var none1="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
+			var none2="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
+			var a1="51806c68e99afe6ff540e529a214115e090f78f3083719642f1c44fb3ffd9a90";
+			var a2="455e911f9624538db08fc21e6a604dc45d6d5245f4a158f765bc08cc01003681";
+			var b1="e19796712f1cf0de97d54a6617d8e8fc4f451b195268cd9f149129c90bb959f0";
+			var b2="384fde3636e6e01e0194d2976d8f26410af3e846e573379cb1a09e2f0752d8cc";
+			
+			password_input_button.onclick = function() {
+				convertToHash()
+				
+				let passwordArray1 = [none1,a1,b1]; 
+				let passwordArray2 = [none2,a2,b2]; 
+
+				
+				for (let i = 0; i < passwordArray1.length && i < passwordArray2.length; i++) {
+					if (passwordArray1[i] === aname && passwordArray2[i] === akey) {
+						a = true;
+						break; 
+					}
+				}
+
+				console.log(a); 
+
+				var gou = document.getElementById("checkbox");
+
+				if (!checkbox.checked) {
+					a = false;
+					alert("没有勾选已认真阅读并同意协议哦！");
+				} else if (a == true) {
+
+
+					function generateAccess() {
+						sessionStorage.setItem('accessGranted', 'true');
+						alert('欢迎光临！');
+					}
+					generateAccess()
+
+					function isMobile() {
+						return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator
+							.userAgent);
+					}
+
+					if (isMobile()) {
+						window.open('phone/HYL.html');
+					} else {
+						window.open('computer/NFMS.html');
+					}
+				} else {
+					alert("账或密码出错哦！");
+				}
+			}
+
+		}
+	</script>
+</html>

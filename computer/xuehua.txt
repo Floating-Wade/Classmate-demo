@@ -1,0 +1,78 @@
+
+js如何实现满屏雪花飘过持续2秒的效果
+在JavaScript中，你可以使用HTML5的canvas元素来绘制雪花，并使用requestAnimationFrame来实现雪花的飘飘的效果。以下是实现该效果的示例代码：
+
+HTML部分：
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Snowflakes Effect</title>
+<style>
+  canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+</style>
+</head>
+<body>
+<canvas id="snowflake-canvas"></canvas>
+<script src="snowflakes.js"></script>
+</body>
+</html>
+JavaScript部分 (snowflakes.js):
+
+const canvas = document.getElementById('snowflake-canvas');
+const ctx = canvas.getContext('2d');
+const snowflakes = [];
+const flakeCount = 200;
+const snowflakeRange = 50;
+const snowflakeSpeed = 1;
+const snowflakeOpacity = 0.5;
+ 
+function init() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  for (let i = 0; i < flakeCount; i++) {
+    snowflakes.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * snowflakeRange,
+      speed: Math.random() * snowflakeSpeed,
+      opacity: snowflakeOpacity
+    });
+  }
+  animateSnow();
+}
+ 
+function animateSnow() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  snowflakes.forEach((flake) => {
+    flake.y += flake.speed;
+    flake.x += Math.cos(flake.y * 0.1) * 0.5;
+    if (flake.y > canvas.height) {
+      flake.y = 0;
+    }
+    ctx.beginPath();
+    ctx.fillStyle = 'white';
+    ctx.globalAlpha = flake.opacity;
+    ctx.arc(flake.x, flake.y, flake.size, 0, Math.PI * 2);
+    ctx.fill();
+  });
+  requestAnimationFrame(animateSnow);
+}
+ 
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+ 
+init();
+setTimeout(() => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}, 2000); // 持续时间2秒
+这段代码会在页面加载时生成200个雪花，每个雪花飘飘地在屏幕上停留2秒钟。你可以根据需要调整flakeCount（雪花的数量）、snowflakeRange（雪花的大小范围）、snowflakeSpeed（雪花下落的速度）和snowflakeOpacity（雪花的透明度）等参数。
